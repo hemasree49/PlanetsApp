@@ -148,7 +148,7 @@ const PLANETS = [
 export default function App() {
   const [selectedPlanet, setSelectedPlanet] = useState(PLANETS[0]);
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [showMissions, setShowMissions] = useState(false);
   const getOrdinal = (n) => {
     const s = ["th", "st", "nd", "rd"];
     const v = n % 100;
@@ -201,8 +201,20 @@ export default function App() {
           <input
             type="text"
             placeholder="Search universe..."
-            className="bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 text-xs w-40 outline-none focus:ring-1 ring-white/20"
-            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-bar"
+            value={searchQuery}
+            onChange={(e) => {
+              const value = e.target.value;
+              setSearchQuery(value);
+
+              const foundPlanet = PLANETS.find((planet) =>
+                planet.name.toLowerCase().includes(value.toLowerCase()),
+              );
+
+              if (foundPlanet) {
+                setSelectedPlanet(foundPlanet);
+              }
+            }}
           />
         </div>
       </header>
@@ -299,6 +311,7 @@ export default function App() {
               >
                 Next Destination <ArrowRight size={14} />
               </button>
+              
             </motion.div>
           </AnimatePresence>
         </div>

@@ -16,6 +16,20 @@
 @layer components {
   .glass-card {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl transition-all duration-500;
+    .search-bar {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 8px 16px;
+      width: 160px;
+      color: white;
+      outline: none;
+    }
+
+    .search-bar:focus {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
   }
 
   /* Uses the dynamic variable from React */
